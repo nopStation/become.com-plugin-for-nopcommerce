@@ -1,10 +1,10 @@
-﻿{
+{
   "Group": "Promotion feeds",
   "FriendlyName": "Become.com",
   "SystemName": "PromotionFeed.Become",
   "Version": "1.41",
-  "SupportedVersions": [ "4.40" ],
-  "Author": "nopCommerce team",
+  "SupportedVersions": [ "4.50" ],
+  "Author": "nopCommerce team, Nop-Station Team",
   "DisplayOrder": 1,
   "FileName": "Nop.Plugin.Feed.Become.dll",
   "Description": "This plugin allows you to integrate with Become.com, price comparison service"

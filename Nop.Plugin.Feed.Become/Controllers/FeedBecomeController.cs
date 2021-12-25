@@ -11,16 +11,15 @@ using Nop.Core;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Stores;
-using Nop.Core.Html;
 using Nop.Plugin.Feed.Become.Models;
 using Nop.Services.Catalog;
 using Nop.Services.Configuration;
 using Nop.Services.Directory;
+using Nop.Services.Html;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
 using Nop.Services.Media;
 using Nop.Services.Messages;
-using Nop.Services.Plugins;
 using Nop.Services.Security;
 using Nop.Services.Seo;
 using Nop.Web.Framework;
@@ -51,6 +50,7 @@ namespace Nop.Plugin.Feed.Become.Controllers
         private readonly IPictureService _pictureService;
         private readonly IProductService _productService;
         private readonly IUrlRecordService _urlRecordService;
+        private readonly IHtmlFormatter _htmlFormatter;
 
         #endregion
 
@@ -71,7 +71,7 @@ namespace Nop.Plugin.Feed.Become.Controllers
             IManufacturerService manufacturerService,
             IProductService productService,
             IPictureService pictureService,
-            IUrlRecordService urlRecordService)
+            IUrlRecordService urlRecordService, IHtmlFormatter htmlFormatter)
         {
             _becomeSettings = becomeSettings;
             _currencyService = currencyService;
@@ -89,6 +89,7 @@ namespace Nop.Plugin.Feed.Become.Controllers
             _productService = productService;
             _pictureService = pictureService;
             _urlRecordService = urlRecordService;
+            _htmlFormatter = htmlFormatter;
         }
 
         #endregion
@@ -248,7 +249,7 @@ namespace Nop.Plugin.Feed.Become.Controllers
                         manufacturerPartNumber = RemoveSpecChars(manufacturerPartNumber);
                         manufacturerName = RemoveSpecChars(manufacturerName);
 
-                        description = HtmlHelper.StripTags(description);
+                        description = _htmlFormatter.StripTags(description);
                         description = CommonHelper.EnsureMaximumLength(description, 250);
                         description = RemoveSpecChars(description);
 
